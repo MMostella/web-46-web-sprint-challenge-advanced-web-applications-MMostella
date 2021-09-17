@@ -1,4 +1,5 @@
 import React,{ useState } from "react";
+import axios from "axios";
 
 const Login = () => {
   const [formValues, setFormValues] = useState({
@@ -14,11 +15,22 @@ const Login = () => {
     setFormValues({...formValues, [e.target.name]: e.target.value})
   }
 
+  const handleLogin = (e) => {
+    e.preventDefault();
+    axios
+      .post('http://localhost:5000/api/login')
+      .then(res => {
+        localStorage.setItem('token', res.data)
+        setError('');
+      })
+      .catch(err => console.log(err))
+  }
+
   return (
     <div>
       <h1>Welcome to the Bubble App!</h1>
       <div data-testid="loginForm" className="login-form">
-        <form>
+        <form onSubmit={handleLogin}>
           <input
             id='username'
             type='text'
@@ -33,6 +45,9 @@ const Login = () => {
             value={formValues.password}
             onChange={handleChange}
           />
+
+          <p id='error'>{error}</p>
+
           <button id='submit'>Login</button>
         </form>
       </div>
