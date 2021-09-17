@@ -2,7 +2,18 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import Login from "./components/Login";
+import PrivateRoute from './components/PrivateRoute';
+import axiosWithAuth from './helpers/axiosWithAuth';
 import "./styles.scss";
+
+const handleLogout = () => {
+  axiosWithAuth()
+    .post('logout')
+    .then(res => {
+      localStorage.removeItem('token')
+      window.location.href = '/';
+    })
+}
 
 function App() {
   return (
@@ -10,9 +21,10 @@ function App() {
       <div className="App">
         <header>
           Color Picker Sprint Challenge
-          <a data-testid="logoutButton" href="#">logout</a>
+          <a data-testid="logoutButton" onClick={handleLogout} href="#">logout</a>
         </header>
         <Route path='/' component={Login}/>
+        <PrivateRoute/>
       </div>
     </Router>
   );
