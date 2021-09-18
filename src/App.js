@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import BubblePage from "./components/BubblePage";
 
 import Login from "./components/Login";
 import PrivateRoute from './components/PrivateRoute';
@@ -11,7 +12,7 @@ const handleLogout = () => {
     .post('logout')
     .then(res => {
       localStorage.removeItem('token')
-      window.location.href = '/';
+      document.location.href = '/';
     })
 }
 
@@ -23,8 +24,8 @@ function App() {
           Color Picker Sprint Challenge
           <a data-testid="logoutButton" onClick={handleLogout} href="#">logout</a>
         </header>
-        <Route path='/' component={Login}/>
-        <PrivateRoute/>
+        <Route exact path='/' component={Login}/>
+        <PrivateRoute component={BubblePage}/>
       </div>
     </Router>
   );

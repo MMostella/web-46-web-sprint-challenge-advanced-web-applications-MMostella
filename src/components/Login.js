@@ -1,10 +1,13 @@
 import React,{ useState } from "react";
 import axios from "axios";
+import { useHistory } from "react-router";
 
 const Login = () => {
+  const { push } = useHistory();
+
   const [formValues, setFormValues] = useState({
-    username: '',
-    password: ''
+    username: 'Lambda',
+    password: 'School'
   })
   // make a post request to retrieve a token from the api
   // when you have handled the token, navigate to the BubblePage route
@@ -17,13 +20,19 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    axios
-      .post('http://localhost:5000/api/login')
+    return axios
+      .post(`http://localhost:5000/api/login`)
       .then(res => {
-        localStorage.setItem('token', res.data)
-        setError('');
+        console.log(res)
+        // localStorage.setItem('token', res.data)
+        // setError('');
+        // push('/bubbles')
       })
-      .catch(err => console.log(err))
+      .catch(err => {
+        // if (err.response.status === 403){
+        //   setError('Username or Password Incorrect!!!')
+        // }
+      })
   }
 
   return (
@@ -46,13 +55,11 @@ const Login = () => {
             onChange={handleChange}
           />
 
-          <p id='error'>{error}</p>
+          <p id="error" className="error">{error}</p>
 
           <button id='submit'>Login</button>
         </form>
       </div>
-
-      <p id="error" className="error">{error}</p>
     </div>
   );
 };

@@ -33,7 +33,7 @@ Your finished project must include all of the following requirements. **Unlike o
 > *Build a login form to authenticate your users along with all the components and utilities needed to support authentication.*
 
 * [1] In `Login.js`, build all UI and state functionality needed to capture a username and password.
-* [] Add in two routes that display the login component, one for the default path '/' and one for the login path '/login'.
+* [1] Add in two routes that display the login component, one for the default path '/' and one for the login path '/login'.
 * [1] **Make sure that the input for your username and password includes the id="username" and id="password" attributes and an id="submit" on the login button. Codegrade autotests will fail without them.**
 * [1] Build in functionality that would allow an error to be displayed in the provided p tag if either the username or password is incorrect.
 * [1] **Make sure your error p tag has an id="error" attribute attached. Codegrade autotests will fail without them.**
@@ -48,7 +48,7 @@ Your finished project must include all of the following requirements. **Unlike o
 
 * [1] In `services/fetchColorServices.js`, build out fetchColorService function to make a GET request to fetch the color data for your bubbles.
 * [1] When `BubblePages` mounts, call fetchColorServices and save it's result in state.
-* [ ] In `BubblePage.js`, complete `saveEdit`, and `deleteColor` functions to make API requests for to editing and delete data.
+* [] In `BubblePage.js`, complete `saveEdit`, and `deleteColor` functions to make API requests for to editing and delete data.
 * [ ] Watch and enjoy as your app responds to updates in the data. Check out `Bubbles.js` to see how this is built.
 
 #### Testing
